@@ -3,21 +3,18 @@ import { useState } from "react"
 import { useStore } from "../hooks/useStore"
 import * as textures from "../images/textures"
 
-import * as util from 'util';
-
-import prettyprint from 'prettyprint';
-import { createValueIndex } from 'prettyprint';
-
 
 export const Cube = ({ position, texture }) => {
-	const [isHovered, setIsHovered] = useState(false)
+	const [isHovered, setIsHovered] = useState(false);
+
 	const [ref] = useBox(() => ({
 		type: 'Static',
 		position
-	}))
-	const [addCube, removeCube] = useStore((state) => [state.addCube, state.removeCube])
+	}));
 
-	const activeTexture = textures[texture + 'Texture']
+	const [addCube, removeCube] = useStore((state) => [state.addCube, state.removeCube]);
+
+	const activeTexture = textures[texture + 'Texture'];
 
 	return (
 		<mesh
@@ -29,44 +26,44 @@ export const Cube = ({ position, texture }) => {
 				e.stopPropagation()
 				setIsHovered(false)
 			}}
-			onClick={(e) => {
 
-				let event = util.inspect(e);
-
-				console.log((`Clicked: ${event}`));
-
-				e.stopPropagation()
-				const clickedFace = Math.floor(e.faceIndex / 2)
-				const { x, y, z } = ref.current.position
-				if (e.altKey) {
+			onPointerDown = {(e) => {
+				e.stopPropagation();
+				
+				const { x, y, z } = ref.current.position;
+				
+				const clickedFace = Math.floor(e.faceIndex / 2);				
+				
+				if (e.button === 0) {
 					removeCube(x, y, z)
-					return
-				}
-				else if (clickedFace === 0) {
+				};
+				
+				if ((clickedFace === 0) && (e.button === 2)) {
 					addCube(x + 1, y, z)
-					return
-				}
-				else if (clickedFace === 1) {
+				};
+				
+				if ((clickedFace === 1) && (e.button === 2)) {
 					addCube(x - 1, y, z)
-					return
-				}
-				else if (clickedFace === 2) {
+				};
+				
+				if ((clickedFace === 2) && (e.button === 2)) {
 					addCube(x, y + 1, z)
-					return
-				}
-				else if (clickedFace === 3) {
+				};
+
+				if ((clickedFace === 3) && (e.button === 2)) {
 					addCube(x, y - 1, z)
-					return
-				}
-				else if (clickedFace === 4) {
+				};
+				
+				if ((clickedFace === 4) && (e.button === 2)) {
 					addCube(x, y, z + 1)
-					return
-				}
-				else if (clickedFace === 5) {
+				};
+				
+				if ((clickedFace === 5) && (e.button === 2)) {
 					addCube(x, y, z - 1)
-					return
 				}
-			}}
+			}
+		}
+
 			ref={ref}
 		>
 			<boxBufferGeometry attach="geometry" />
