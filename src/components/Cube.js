@@ -3,6 +3,11 @@ import { useState } from "react"
 import { useStore } from "../hooks/useStore"
 import * as textures from "../images/textures"
 
+import * as util from 'util';
+
+import prettyprint from 'prettyprint';
+import { createValueIndex } from 'prettyprint';
+
 
 export const Cube = ({ position, texture }) => {
 	const [isHovered, setIsHovered] = useState(false)
@@ -13,8 +18,6 @@ export const Cube = ({ position, texture }) => {
 	const [addCube, removeCube] = useStore((state) => [state.addCube, state.removeCube])
 
 	const activeTexture = textures[texture + 'Texture']
-
-
 
 	return (
 		<mesh
@@ -27,6 +30,11 @@ export const Cube = ({ position, texture }) => {
 				setIsHovered(false)
 			}}
 			onClick={(e) => {
+
+				let event = util.inspect(e);
+
+				console.log((`Clicked: ${event}`));
+
 				e.stopPropagation()
 				const clickedFace = Math.floor(e.faceIndex / 2)
 				const { x, y, z } = ref.current.position
