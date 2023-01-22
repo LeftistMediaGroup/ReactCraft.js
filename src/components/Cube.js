@@ -22,6 +22,7 @@ export const Cube = ({ position, texture }) => {
 				e.stopPropagation()
 				setIsHovered(true)
 			}}
+			
 			onPointerOut={(e) => {
 				e.stopPropagation()
 				setIsHovered(false)
