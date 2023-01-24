@@ -1,6 +1,7 @@
 import { useBox } from "@react-three/cannon"
 import { useState } from "react"
 import { useStore } from "../hooks/useStore"
+import * as textures from "../images/textures"
 
 
 export const Cube = ({ position, texture }) => {
@@ -21,7 +22,7 @@ export const Cube = ({ position, texture }) => {
 				e.stopPropagation()
 				setIsHovered(true)
 			}}
-
+			
 			onPointerOut={(e) => {
 				e.stopPropagation()
 				setIsHovered(false)
