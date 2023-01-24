@@ -7,10 +7,6 @@ import { usePlane } from "@react-three/cannon";
 import * as THREE from "three";
 import { Box, Html } from '@react-three/drei';
 
-import { DecalGeometry } from 'three';
-
-import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
-import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
 import { useStore } from '../hooks/useStore';
 
