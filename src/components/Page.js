@@ -14,27 +14,25 @@ import { useStore } from '../hooks/useStore';
 export const Page = () => {
     function Box() {
         const [size, set] = useState(0.5)
-        const [hidden, setVisible] = useState(false)
         
+        let boxPosition = [0, 0, -5];
         
         return (
         
-        <mesh scale={size * 2}>
+        <mesh 
+        scale={size * 2}
+        position={boxPosition}
+        >
+            
             <boxGeometry />
             <meshStandardMaterial />
             <Html
-            style={{
-                transition: 'all 0.2s',
-                opacity: hidden ? 0 : 1,
-                transform: `scale(${hidden ? 0.5 : 1})`
-            }}
+            position={[0,0, .51]}
             distanceFactor={1.5}
-            position={[0, 0, 0.51]}
             transform
             occlude
-            onOcclude={setVisible}>
-                
-            <span>Text</span>
+            >
+                <span>Text</span>
             </Html>
         </mesh>
         
