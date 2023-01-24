@@ -8,6 +8,8 @@ import { Cubes } from './components/Cubes'
 import { TextureSelector } from './components/TextureSelector';
 import { Menu } from './components/Menu';
 
+import { Page } from './components/Page';
+
 function App() {
   return (
     <>
@@ -19,6 +21,7 @@ function App() {
           <Player />
           <Cubes />
           <Ground />
+          <Page />
         </Physics>
       </Canvas>
       <div className='absolute centered cursor'>+</div>
